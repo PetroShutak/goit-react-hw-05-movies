@@ -19,7 +19,13 @@ export const App = () => {
     {/* <Searchbar /> */}
       <h1>Trending today</h1>
       <div>
-        <ul>
+        <ul 
+        // style={{
+        //   display: 'flex',
+        //   flexDirection: 'column',
+        //   padding:20,
+        // }}
+        >
           {movies.map(movie => (
             <li key={movie.id}>{movie.title}</li>
           ))}
