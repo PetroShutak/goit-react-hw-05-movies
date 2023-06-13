@@ -1,0 +1,15 @@
+// Ключ API
+// 8b801a00c53265c17aedd2cbc707fdf5
+
+//
+
+// Токен доступу для читання API
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YjgwMWEwMGM1MzI2NWMxN2FlZGQyY2JjNzA3ZmRmNSIsInN1YiI6IjY0ODg5YTc2ZDJiMjA5MDE0ZTBhZjY3ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8DfGWv34_5MLNcZNh_g5rSZOB3rVCBAzF02vo1CguXY
+
+//
+
+/trending/get-trending список найпопулярніших фільмів на сьогодні для створення колекції на головній сторінці.
+/search/search-movies пошук фільму за ключовим словом на сторінці фільмів.
+/movies/get-movie-details запит повної інформації про фільм для сторінки кінофільму.
+/movies/get-movie-credits запит інформації про акторський склад для сторінки кінофільму.
+/movies/get-movie-reviews запит оглядів для сторінки кінофільму.
