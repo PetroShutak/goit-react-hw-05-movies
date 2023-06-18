@@ -1,50 +1,24 @@
-import { useState, useEffect } from 'react';
-import { fetchTrendingMovies } from 'utils/api';
-// import Searchbar from './Searchbar/Searchbar';
+import { Routes, Route } from "react-router-dom";
+import Home from 'pages/Home'
+import Movies from 'pages/Movies'
+import MovieDetails from 'pages/MovieDetails'
+import Header from 'components/Header/Header'
 
 export const App = () => {
-  const [movies, setMovies] = useState([]);
-  
-  useEffect(() => {
-    fetchTrendingMovies().then(setMovies);
-  }, []);
-
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
-  
-
   return (
-    <>
-    {/* <Searchbar /> */}
-      <h1>Trending today</h1>
-      <div>
-        <ul 
-        // style={{
-        //   display: 'flex',
-        //   flexDirection: 'column',
-        //   padding:20,
-        // }}
-        >
-          {movies.map(movie => (
-            <li key={movie.id}>{movie.title}</li>
-          ))}
-        </ul>
-      </div>
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
-        React homework 05 - Movies App - Loading...
-      </div>
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<Header />}>
+        <Route index element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />} />
+        </Route>
+      </Routes>
+    </div>
   );
 };
+
+
+
 
 
