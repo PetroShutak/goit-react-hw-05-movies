@@ -24,7 +24,7 @@ const Home = () => {
           color: '#010101',
         }}
       >
-        React homework 05 - Movies App - Loading...
+       
       </div>
       <h1>Trending today</h1>
       <div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -34,18 +33,13 @@ const MovieDetails = () => {
         width={300}
         height={450}
       />
-      {/* <ul>
-        {movie.genres.map(genre => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul> */}
-
+      <h2>Additional information</h2>
       <ul>
         <li>
-          <Cast />
+        <Link to="cast">Cast</Link>
        </li>
        <li>
-          <Reviews />
+       <Link to="reviews">Reviews</Link>
        </li>
       </ul>
     </div>

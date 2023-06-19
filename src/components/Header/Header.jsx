@@ -1,9 +1,10 @@
+
 import { Link, Outlet } from 'react-router-dom';
 
 const Header = () => {
   return (
     <div>
-      <h1>Movies Library</h1>
+      
       <ul style={{
         display: 'flex',
         gap: 20,
@@ -20,10 +21,9 @@ const Header = () => {
         <li>
           <Link to="movies">Movies</Link>
         </li>
-        {/* <li>
-          <Link to="movies/:movieId">details</Link>
-        </li> */}
       </ul>
+
+   
 
       <Outlet />
     </div>
