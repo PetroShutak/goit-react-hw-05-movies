@@ -1,32 +1,34 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchMovieCredits } from 'utils/api';
+// import { useEffect, useState } from 'react';
+// import { useParams } from 'react-router-dom';
+// import { fetchMovieCredits } from 'utils/api';
 
-const Cast = () => {
-  const { movieId } = useParams();
-  useEffect(() => {
-    if (!movieId) return;
-  }, [movieId]);
+// const Cast = () => {
+//   const { movieId } = useParams();
+//   const [cast, setCast] = useState([]);
 
-  useEffect(() => {
-    const fetchMovieData = async () => {
-      const movieData = await fetchMovieCredits(movieId);
-      console.log(movieData);
-    };
+//   useEffect(() => {
+//     const fetchMovieData = async () => {
+//       if (!movieId) return;
 
-    fetchMovieData();
-  }, [movieId]);
+//       try {
+//         const movieData = await fetchMovieCredits(movieId);
+//         setCast(movieData.cast);
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     };
 
-  return (
-    <div>
-      <h1>Cast</h1>{' '}
-    </div>
-  );
-};
+//     fetchMovieData();
+//   }, [movieId]);
 
-export default Cast;
-
-// const { movieId } = useParams();
-// useEffect(() => {
-// if (!movieId) return;
-// }, [movieId]);
+//   return (
+//     <div>
+//       <h1>Cast</h1>
+//       {cast.map((actor) => (
+//         <div key={actor.id}>{actor.name}</div>
+//       ))}
+//     </div>
+//   );
+// };
+ 
+// export default Cast;
