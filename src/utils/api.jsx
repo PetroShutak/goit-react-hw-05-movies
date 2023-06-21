@@ -70,8 +70,8 @@ export const fetchMovieSearch = async query => {
   }
 };
 
-// ще створимо запит для відео
-//
+
+
 // https://api.themoviedb.org/3/movie/{movie_id}/videos
 
 export const fetchMovieVideo = async movieId => {
