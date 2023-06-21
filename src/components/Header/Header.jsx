@@ -1,6 +1,15 @@
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Header = () => {
+  const StyledLink = styled(NavLink)`
+    color: black;
+
+    &.active {
+      color: orange;
+    }
+  `;
+
   return (
     <div>
       <ul
@@ -10,15 +19,15 @@ const Header = () => {
           alignItems: 'center',
           padding: 20,
           listStyle: 'none',
-          boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
+          boxShadow: '0px 0px 0px 0px rgba(0,0,0,0.75)',
           borderBottom: '1px solid black',
         }}
       >
         <li>
-          <Link to="/">Home</Link>
+          <StyledLink to="/">Home</StyledLink>
         </li>
         <li>
-          <Link to="movies">Movies</Link>
+          <StyledLink to="movies">Movies</StyledLink>
         </li>
       </ul>
 
