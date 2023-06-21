@@ -1,3 +1,4 @@
+import MovieVideo from 'components/MovieVideo/MovieVideo';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, Outlet } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
@@ -25,7 +26,6 @@ const MovieDetails = () => {
     <div>
       <h1>{movie.title}</h1>
       <p>User score: {movie.vote_average}</p>
-     
       <p>{movie.overview}</p>
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -33,7 +33,8 @@ const MovieDetails = () => {
         width={300}
         height={450}
       />
-      <h2>Additional information</h2>
+      <h2>Trailer</h2>
+     {<p>No trailer</p> && <MovieVideo movieId={movieId} />}
       <ul>
         <li>
         <Link to="cast">Cast</Link>
