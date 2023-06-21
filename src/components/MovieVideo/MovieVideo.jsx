@@ -5,11 +5,19 @@ const MovieVideo = ({ movieId }) => {
   const [video, setVideo] = useState([]);
 
   useEffect(() => {
-    if (!movieId) return;
-  }, [movieId]);
+    const fetchVideo = async () => {
+      try {
+        const videoData = await fetchMovieVideo(movieId);
+        setVideo(videoData);
+      } catch (error) {
+        console.log('error', error);
+        setVideo([]);
+      }
+    };
 
-  useEffect(() => {
-    fetchMovieVideo(movieId).then(setVideo);
+    if (movieId) {
+      fetchVideo();
+    }
   }, [movieId]);
 
   return (

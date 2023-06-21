@@ -11,7 +11,7 @@ const Searchbar = ({ onSubmit }) => {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSearchSubmit}>
         <input
           type="text"
           autoComplete="off"
@@ -20,9 +20,7 @@ const Searchbar = ({ onSubmit }) => {
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-        <button type="submit" onSubmit={handleSearchSubmit}>
-          Search
-        </button>
+        <button type="submit">Search</button>
       </form>
     </div>
   );

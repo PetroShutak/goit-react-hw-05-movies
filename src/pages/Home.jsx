@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from 'utils/api';
+import MovieList from 'components/MovieList/MovieList';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetchTrendingMovies().then(setMovies);
-  }, []);
+    const fetchMovies = async () => {
+      try {
+        const trendingMovies = await fetchTrendingMovies();
+        setMovies(trendingMovies);
+      } catch (error) {
+        console.log('error', error);
+        setMovies([]);
+      }
+    };
 
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
+    fetchMovies();
+  }, []);
 
   return (
     <>
@@ -28,13 +34,7 @@ const Home = () => {
       </div>
       <h1>Trending today</h1>
       <div>
-        <ul style={{ listStyle: 'none' }}>
-          {movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <MovieList movies={movies} />
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCredits } from 'utils/api';
 
-const defaultImg = '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>'
+// const defaultImg = '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>'
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -35,7 +35,7 @@ const Cast = () => {
               <h2>{actor.name}</h2>
               <p>Character: {actor.character}</p>
               <img
-                src={`https://image.tmdb.org/t/p/w500${actor.profile_path}` || defaultImg}
+                src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
                 alt={actor.name}
                 width={200}
                 height={300}
