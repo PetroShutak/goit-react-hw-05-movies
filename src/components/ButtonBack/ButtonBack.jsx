@@ -4,7 +4,7 @@ const ButtonBack = ({ location }) => {
   const navigate = useNavigate();
   console.log(location);
   return (
-    <button type="button" onClick={() => navigate(location.state ?? '/')}>
+    <button type="button" onClick={() => navigate(location.state.from ?? '/')}>
       &larr; Go back
     </button>
   );
