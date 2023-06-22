@@ -11,6 +11,7 @@ import {
   MovieScore,
   MovieOverview,
   ButtonTrailer,
+  AditionalInfoContainer,
 } from '.././components/MovieDetailsComponent/MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -74,7 +75,7 @@ const MovieDetails = () => {
       ) : (
         <MovieVideo movieId={movieId} />
       )}
-
+      <AditionalInfoContainer>
       <h2>Additional information</h2>
       <ul>
         <li>
@@ -84,6 +85,7 @@ const MovieDetails = () => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
+      </AditionalInfoContainer>
       <Outlet />
     </div>
   );

@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const MovieDetailsContainer = styled.div`
   display: flex;
   gap: 20px;
+  border-botoom: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+
 `;
 
 export const MovieImage = styled.img`
@@ -22,6 +26,15 @@ export const MovieScore = styled.p`
 
 export const MovieOverview = styled.p`
   width: 500px;
+`;
+
+export const AditionalInfoContainer = styled.div`
+margin-top: 20px;
+padding: 20px;
+border-botoom: 1px solid #000;
+border-top: 1px solid #000;
+border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 export const ButtonTrailer = styled.button`
