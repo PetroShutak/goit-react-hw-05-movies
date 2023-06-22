@@ -1,5 +1,4 @@
 import Searchbar from 'components/Searchbar/Searchbar';
-import Proptypes from 'prop-types';
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSearchParams, useNavigate } from 'react-router-dom';
@@ -57,9 +56,7 @@ const Movies = () => {
   );
 };
 
-Movies.propTypes = {
-  movieId: Proptypes.string.isRequired,
-};
+
 
 
 export default Movies;

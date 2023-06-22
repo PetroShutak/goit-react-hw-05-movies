@@ -1,6 +1,5 @@
 import ButtonBack from 'components/ButtonBack/ButtonBack';
 import MovieVideo from 'components/MovieVideo/MovieVideo';
-import Proptypes from 'prop-types';
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
@@ -43,16 +42,26 @@ const MovieDetails = () => {
   return (
     <div>
       <ButtonBack location={locationRef.current} />
-      <h1>{movie.title}</h1>
       <div>
         <MovieDetailsContainer>
           <MovieImage
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
-          />
+            />
           <MovieInfoContainer>
+            <h1>
+              {movie.title}({movie.release_date.slice(0, 4)})
+              </h1>
             <MovieScore>User score: {movie.vote_average}</MovieScore>
+            <h2>Overview</h2>
             <MovieOverview>{movie.overview}</MovieOverview>
+            <h3>Genres</h3>
+            <ul>
+              {movie.genres.map(genre => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+            </ul>
+           
           </MovieInfoContainer>
         </MovieDetailsContainer>
       </div>
@@ -80,8 +89,5 @@ const MovieDetails = () => {
   );
 };
 
-MovieDetails.propTypes = {
-  movieId: Proptypes.string.isRequired,
-};
 
 export default MovieDetails;

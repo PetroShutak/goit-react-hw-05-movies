@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const MovieDetailsContainer = styled.div`
   display: flex;
-  
   gap: 20px;
 `;
 
@@ -14,9 +13,7 @@ export const MovieImage = styled.img`
 `;
 
 export const MovieInfoContainer = styled.div`
-  display: flex;
   flex-direction: column;
-  gap: 10px;
 `;
 
 export const MovieScore = styled.p`
@@ -24,22 +21,22 @@ export const MovieScore = styled.p`
 `;
 
 export const MovieOverview = styled.p`
-    width: 500px;
+  width: 500px;
 `;
 
 export const ButtonTrailer = styled.button`
-margin-top: 20px;
-padding: 10px 15px;
-font-size: 16px;
-background-color: #f0f0f0;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-font-weight: 700;
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
 
-&:hover {
-  background-color: #e0e0e0;
-  color: #d32f2f;
-}
+  &:hover {
+    background-color: #e0e0e0;
+    color: #d32f2f;
+  }
 `;

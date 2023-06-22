@@ -20,7 +20,7 @@ const Cast = () => {
 
   return (
     <CastContainer>
-      <h1>Cast</h1>
+      
       {cast.length > 0 ? (
         <CastList>
           {cast.map(actor => (

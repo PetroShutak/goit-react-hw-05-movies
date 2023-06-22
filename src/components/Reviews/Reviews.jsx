@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'utils/api';
-import PropTypes from 'prop-types';
 import {
   ReviewsContainer,
   ReviewList,
@@ -28,7 +27,6 @@ const Reviews = () => {
 
   return (
     <ReviewsContainer>
-      <h1>Reviews</h1>
       {reviews.length > 0 ? (
         <ReviewList>
           {reviews.map(review => (
@@ -45,9 +43,6 @@ const Reviews = () => {
   );
 };
 
-Reviews.propTypes = {
-  movieId: PropTypes.string.isRequired,
-};
 
 
 export default Reviews;
