@@ -9,6 +9,10 @@ const Searchbar = ({ onSubmit }) => {
     setQuery('');
   };
 
+  const handleInputChange = e => {
+    setQuery(e.target.value);
+  };
+
   return (
     <div>
       <form onSubmit={handleSearchSubmit}>
@@ -18,7 +22,7 @@ const Searchbar = ({ onSubmit }) => {
           autoFocus
           placeholder="Search movies"
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={handleInputChange}
         />
         <button type="submit">Search</button>
       </form>

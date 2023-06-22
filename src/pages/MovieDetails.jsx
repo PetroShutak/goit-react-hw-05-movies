@@ -1,12 +1,16 @@
+import ButtonBack from 'components/ButtonBack/ButtonBack';
 import MovieVideo from 'components/MovieVideo/MovieVideo';
-import { useEffect, useState } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
+
+  const location = useLocation();
+  const locationRef = useRef(location);
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -28,8 +32,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link to="/">Go back</Link>
-
+      <ButtonBack location={locationRef.current} />
       <h1>{movie.title}</h1>
       <p>User score: {movie.vote_average}</p>
       <p>{movie.overview}</p>
@@ -49,6 +52,7 @@ const MovieDetails = () => {
         <MovieVideo movieId={movieId} />
       )}
 
+      <h2>Additional information</h2>
       <ul>
         <li>
           <Link to="cast">Cast</Link>
