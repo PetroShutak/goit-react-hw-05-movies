@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const BackButton = styled.button`
+  margin-bottom: 15px;
   padding: 10px 15px;
   font-size: 16px;
   background-color: #f0f0f0;

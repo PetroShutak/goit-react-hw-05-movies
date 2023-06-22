@@ -22,7 +22,13 @@ const MovieVideo = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <>
+    <div
+      style={{
+        marginTop: 20,
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
       {video.length > 0 && (
         <iframe
           title="trailer"
@@ -32,13 +38,12 @@ const MovieVideo = ({ movieId }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></iframe>
       )}
-    </>
+    </div>
   );
 };
 
 MovieVideo.propTypes = {
   movieId: PropTypes.string.isRequired,
 };
-
 
 export default MovieVideo;

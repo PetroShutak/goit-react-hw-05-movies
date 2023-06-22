@@ -6,7 +6,7 @@ export const MovieListContainer = styled.div`
 `;
 
 export const MovieListUl = styled.ul`
-  list-style: none;
+  list-style: circle;
 `;
 
 export const MovieListItem = styled.li`
@@ -18,7 +18,8 @@ export const MovieLink = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: #333;
+    color: #d32f2f;
     text-decoration: underline;
+    list-style: round;
   }
 `;
