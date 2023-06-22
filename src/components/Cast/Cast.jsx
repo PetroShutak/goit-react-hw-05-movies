@@ -1,18 +1,16 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { CastContainer, CastList, CastItem, CastImage, CastName, CastCharacter } from './Cast.styled';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCredits } from 'utils/api';
 
-// const defaultImg = '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>'
+const defaultImage = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'; 
 
 const Cast = () => {
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = React.useState([]);
   const { movieId } = useParams();
 
-  useEffect(() => {
-    if (!movieId) return;
-  }, [movieId]);
-
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchCast = async () => {
       const cast = await fetchMovieCredits(movieId);
       setCast(cast);
@@ -21,33 +19,40 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <CastContainer>
       <h1>Cast</h1>
       {cast.length > 0 ? (
-        <ul style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 20,
-            listStyle: 'none',
-        }}>
+        <CastList>
           {cast.map(actor => (
-            <li key={actor.id}>
-              <h2>{actor.name}</h2>
-              <p>Character: {actor.character}</p>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+            <CastItem key={actor.id}>
+              <CastImage
+                src={`https://image.tmdb.org/t/p/w500${actor.profile_path}` || defaultImage}
                 alt={actor.name}
-                width={200}
-                height={300}
+                onError={e => {
+                  e.target.src = defaultImage;
+                }}
               />
-            </li>
+              <CastName>{actor.name}</CastName>
+              <CastCharacter>Character: {actor.character}</CastCharacter>
+            </CastItem>
           ))}
-        </ul>
+        </CastList>
       ) : (
         <p>We don't have any cast for this movie</p>
       )}
-    </div>
+    </CastContainer>
   );
+};
+
+Cast.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+      profile_path: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default Cast;

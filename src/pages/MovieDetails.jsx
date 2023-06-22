@@ -5,6 +5,15 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
 
+import {
+  MovieDetailsContainer,
+  MovieImage,
+  MovieInfoContainer,
+  MovieScore,
+  MovieOverview,
+  ButtonTrailer,
+} from '.././components/MovieDetailsComponent/MovieDetails.styled';
+
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -35,20 +44,24 @@ const MovieDetails = () => {
     <div>
       <ButtonBack location={locationRef.current} />
       <h1>{movie.title}</h1>
-      <p>User score: {movie.vote_average}</p>
-      <p>{movie.overview}</p>
+      <div>
+        <MovieDetailsContainer>
+          <MovieImage
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+          />
+          <MovieInfoContainer>
+            <MovieScore>User score: {movie.vote_average}</MovieScore>
+            <MovieOverview>{movie.overview}</MovieOverview>
+          </MovieInfoContainer>
+        </MovieDetailsContainer>
+      </div>
 
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-        width={300}
-        height={450}
-      />
-      <h2>Trailer</h2>
+     
       {!showTrailer ? (
-        <button onClick={handleWatchTrailer} type="butoon">
+        <ButtonTrailer onClick={handleWatchTrailer} type="butoon">
           Watch Trailer
-        </button>
+        </ButtonTrailer>
       ) : (
         <MovieVideo movieId={movieId} />
       )}
@@ -70,6 +83,5 @@ const MovieDetails = () => {
 MovieDetails.propTypes = {
   movieId: Proptypes.string.isRequired,
 };
-
 
 export default MovieDetails;
