@@ -1,6 +1,14 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'utils/api';
+import PropTypes from 'prop-types';
+import {
+  ReviewsContainer,
+  ReviewList,
+  ReviewItem,
+  ReviewAuthor,
+  ReviewContent
+} from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -19,27 +27,27 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <ReviewsContainer>
       <h1>Reviews</h1>
       {reviews.length > 0 ? (
-        <ul>
+        <ReviewList>
           {reviews.map(review => (
-            <li key={review.id}>
-              <h2>Author: {review.author}</h2>
-              <p>{review.content}</p>
-            </li>
+            <ReviewItem key={review.id}>
+              <ReviewAuthor>Author: {review.author}</ReviewAuthor>
+              <ReviewContent>{review.content}</ReviewContent>
+            </ReviewItem>
           ))}
-        </ul>
+        </ReviewList>
       ) : (
         <p>We don't have any reviews for this movie</p>
       )}
-    </div>
+    </ReviewsContainer>
   );
 };
 
-export default Reviews;
+Reviews.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};
 
-// const { movieId } = useParams();
-// useEffect(() => {
-// if (!movieId) return;
-// }, [movieId]);
+
+export default Reviews;

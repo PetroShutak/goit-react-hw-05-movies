@@ -1,5 +1,6 @@
 import ButtonBack from 'components/ButtonBack/ButtonBack';
 import MovieVideo from 'components/MovieVideo/MovieVideo';
+import Proptypes from 'prop-types';
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
@@ -65,5 +66,10 @@ const MovieDetails = () => {
     </div>
   );
 };
+
+MovieDetails.propTypes = {
+  movieId: Proptypes.string.isRequired,
+};
+
 
 export default MovieDetails;

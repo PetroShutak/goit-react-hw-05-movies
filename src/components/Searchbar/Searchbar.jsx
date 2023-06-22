@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { SearchForm, SearchInput, SearchButton } from './Searchbar.styled';
 
 const Searchbar = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
@@ -15,8 +17,8 @@ const Searchbar = ({ onSubmit }) => {
 
   return (
     <div>
-      <form onSubmit={handleSearchSubmit}>
-        <input
+      <SearchForm onSubmit={handleSearchSubmit}>
+        <SearchInput
           type="text"
           autoComplete="off"
           autoFocus
@@ -24,10 +26,14 @@ const Searchbar = ({ onSubmit }) => {
           value={query}
           onChange={handleInputChange}
         />
-        <button type="submit">Search</button>
-      </form>
+        <SearchButton type="submit">Search</SearchButton>
+      </SearchForm>
     </div>
   );
+};
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Searchbar;

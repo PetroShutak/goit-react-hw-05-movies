@@ -1,4 +1,5 @@
 import { fetchMovieVideo } from '../../utils/api';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 const MovieVideo = ({ movieId }) => {
@@ -34,5 +35,10 @@ const MovieVideo = ({ movieId }) => {
     </>
   );
 };
+
+MovieVideo.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};
+
 
 export default MovieVideo;

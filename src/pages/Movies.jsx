@@ -1,4 +1,5 @@
 import Searchbar from 'components/Searchbar/Searchbar';
+import Proptypes from 'prop-types';
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSearchParams, useNavigate } from 'react-router-dom';
@@ -48,11 +49,6 @@ const Movies = () => {
     }
   }, [searchParams, handleSearchSubmit]);
 
-  // const updateQueryString = (name) => {
-  //   const nextParams = name !== "" ? { name } : {};
-  //   setSearchParams(nextParams);
-  // };
-
   return (
     <div>
       <Searchbar onSubmit={handleSearchSubmit} />
@@ -60,5 +56,10 @@ const Movies = () => {
     </div>
   );
 };
+
+Movies.propTypes = {
+  movieId: Proptypes.string.isRequired,
+};
+
 
 export default Movies;
