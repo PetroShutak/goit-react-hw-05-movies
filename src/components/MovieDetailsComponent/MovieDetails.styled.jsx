@@ -14,6 +14,7 @@ export const MovieImage = styled.img`
   height: 450px;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  cover: fit;
 `;
 
 export const MovieInfoContainer = styled.div`
@@ -21,7 +22,7 @@ export const MovieInfoContainer = styled.div`
 `;
 
 export const MovieScore = styled.p`
-  width: 100px;
+  width: 200px;
 `;
 
 export const MovieOverview = styled.p`
@@ -36,6 +37,7 @@ border-top: 1px solid #000;
 border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `;
+
 
 export const ButtonTrailer = styled.button`
   margin-top: 20px;

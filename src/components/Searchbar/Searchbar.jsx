@@ -1,13 +1,24 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SearchForm, SearchInput, SearchButton } from './Searchbar.styled';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Searchbar = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
   const handleSearchSubmit = e => {
     e.preventDefault();
+    if (query.trim() === '') {
+      toast.warn('Please enter a search query', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return;
+    }
     onSubmit(query);
+    
+    
     setQuery('');
   };
 
@@ -17,6 +28,7 @@ const Searchbar = ({ onSubmit }) => {
 
   return (
     <div>
+      <ToastContainer />
       <SearchForm onSubmit={handleSearchSubmit}>
         <SearchInput
           type="text"

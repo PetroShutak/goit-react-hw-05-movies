@@ -4,20 +4,25 @@ import { useParams } from 'react-router-dom';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { fetchMovieSearch } from 'utils/api';
 import MovieList from 'components/MovieList/MovieList';
+import Loader from 'components/Loader/Loader';
 
 const Movies = () => {
   const { movieId } = useParams();
   const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams] = useSearchParams();
+
   const navigate = useNavigate();
 
   const handleSearchSubmit = useCallback(
     async query => {
       try {
+        setIsLoading(true);
         const results = await fetchMovieSearch(query);
         setSearchResults(results);
         searchParams.set('query', query);
         navigate(`/movies?${searchParams.toString()}`);
+        setIsLoading(false);
       } catch (error) {
         console.log('error', error);
         setSearchResults([]);
@@ -28,6 +33,7 @@ const Movies = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
+ 
       if (!movieId) return;
       try {
         const results = await fetchMovieSearch(movieId);
@@ -43,13 +49,16 @@ const Movies = () => {
 
   useEffect(() => {
     const query = searchParams.get('query');
+    
     if (query) {
       handleSearchSubmit(query);
     }
+ 
   }, [searchParams, handleSearchSubmit]);
 
   return (
     <div>
+      {isLoading && <Loader />}
       <Searchbar onSubmit={handleSearchSubmit} />
       <MovieList movies={searchResults} />
     </div>

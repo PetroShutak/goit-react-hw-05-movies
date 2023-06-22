@@ -3,7 +3,7 @@ import MovieVideo from 'components/MovieVideo/MovieVideo';
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
-
+import Loader from 'components/Loader/Loader';
 import {
   MovieDetailsContainer,
   MovieImage,
@@ -13,6 +13,8 @@ import {
   ButtonTrailer,
   AditionalInfoContainer,
 } from '.././components/MovieDetailsComponent/MovieDetails.styled';
+
+const defaultImage = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'; 
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -24,9 +26,13 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const fetchMovieData = async () => {
-      const movieData = await fetchMovieDetails(movieId);
-      console.log(movieData);
-      setMovie(movieData);
+      try {
+        const movieData = await fetchMovieDetails(movieId);
+        setMovie(movieData);
+      } catch (error) {
+        console.log('error', error);
+        setMovie(null);
+      }
     };
 
     fetchMovieData();
@@ -37,7 +43,11 @@ const MovieDetails = () => {
   };
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   return (
@@ -46,14 +56,16 @@ const MovieDetails = () => {
       <div>
         <MovieDetailsContainer>
           <MovieImage
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : defaultImage}
             alt={movie.title}
-            />
+          />
           <MovieInfoContainer>
             <h1>
               {movie.title}({movie.release_date.slice(0, 4)})
-              </h1>
-            <MovieScore>User score: {movie.vote_average}</MovieScore>
+            </h1>
+            <MovieScore>
+              User score: {(movie.vote_average * 10).toFixed(0)}%
+            </MovieScore>
             <h2>Overview</h2>
             <MovieOverview>{movie.overview}</MovieOverview>
             <h3>Genres</h3>
@@ -62,12 +74,10 @@ const MovieDetails = () => {
                 <li key={genre.id}>{genre.name}</li>
               ))}
             </ul>
-           
           </MovieInfoContainer>
         </MovieDetailsContainer>
       </div>
 
-     
       {!showTrailer ? (
         <ButtonTrailer onClick={handleWatchTrailer} type="butoon">
           Watch Trailer
@@ -76,20 +86,19 @@ const MovieDetails = () => {
         <MovieVideo movieId={movieId} />
       )}
       <AditionalInfoContainer>
-      <h2>Additional information</h2>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
+        <h2>Additional information</h2>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
       </AditionalInfoContainer>
       <Outlet />
     </div>
   );
 };
-
 
 export default MovieDetails;
