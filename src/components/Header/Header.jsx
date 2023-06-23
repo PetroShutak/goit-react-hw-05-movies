@@ -21,7 +21,6 @@ const Header = () => {
       </StyledList>
     <Suspense fallback={<div><Loader/></div>}>
       <Outlet />
-
     </Suspense>
     </div>
   );
