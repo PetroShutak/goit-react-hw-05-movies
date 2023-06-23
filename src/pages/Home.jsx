@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchTrendingMovies } from 'utils/api';
 import MovieList from 'components/MovieList/MovieList';
-import Loader from 'components/Loader/Loader';
+// import Loader from 'components/Loader/Loader';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -21,7 +21,10 @@ const Home = () => {
   }, []);
 
   if (!movies.length) {
-    return <div><Loader /></div>;
+    return <div>
+      {/* <Loader /> */}
+      Loading...
+      </div>;
   }
 
   return (

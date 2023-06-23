@@ -1,5 +1,8 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 import { StyledList, StyledLink } from './Header.styled';
+import Loader from 'components/Loader/Loader';
+
 
 const Header = () => {
   return (
@@ -16,8 +19,10 @@ const Header = () => {
           <StyledLink to="movies">Movies</StyledLink>
         </li>
       </StyledList>
-
+    <Suspense fallback={<div><Loader/></div>}>
       <Outlet />
+
+    </Suspense>
     </div>
   );
 };

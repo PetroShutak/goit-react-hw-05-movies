@@ -1,9 +1,11 @@
+import { Suspense } from 'react';
+
 import ButtonBack from 'components/ButtonBack/ButtonBack';
 import MovieVideo from 'components/MovieVideo/MovieVideo';
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'utils/api';
-import Loader from 'components/Loader/Loader';
+// import Loader from 'components/Loader/Loader';
 import {
   MovieDetailsContainer,
   MovieImage,
@@ -13,8 +15,10 @@ import {
   ButtonTrailer,
   AditionalInfoContainer,
 } from '.././components/MovieDetailsComponent/MovieDetails.styled';
+import Loader from 'components/Loader/Loader';
 
-const defaultImage = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'; 
+const defaultImage =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -56,7 +60,11 @@ const MovieDetails = () => {
       <div>
         <MovieDetailsContainer>
           <MovieImage
-            src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : defaultImage}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : defaultImage
+            }
             alt={movie.title}
           />
           <MovieInfoContainer>
@@ -96,7 +104,15 @@ const MovieDetails = () => {
           </li>
         </ul>
       </AditionalInfoContainer>
-      <Outlet />
+      <Suspense
+        fallback={
+          <div>
+            <Loader />
+          </div>
+        }
+      >
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
